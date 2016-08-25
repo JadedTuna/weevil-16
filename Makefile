@@ -1,12 +1,26 @@
+ASM=nasm
+ASMFLAGS=-f bin
+BOOT=boot
+KERNEL=kernel
+FLOPPY=weevil.flp
+
+
+help:
+	@echo -e "Available commands:"
+	@echo -e "\tall - compile the OS"
+	@echo -e "\trun - run the .flp file"
+	@echo -e "\tclean - clean up"
+	@echo -e "\thelp - print this help message"
+
 all:
 	@#Just a quick hand-made Makefile
-
-	@# Assemble bootloader
-	nasm boot.asm -f bin -o boot.o
-	@# Now kernel
-	nasm kernel.asm -f bin -o kernel.o
-	@# And join them together
-	cat boot.o kernel.o > weevil.flp
+	$(ASM) $(BOOT).asm $(ASMFLAGS) -o $(BOOT).o
+	$(ASM) $(KERNEL).asm $(ASMFLAGS) -o $(KERNEL).o
+	cat $(BOOT).o $(KERNEL).o > $(FLOPPY)
 
 run:
-	qemu-system-i386 -fda weevil.flp
+	qemu-system-i386 -fda $(FLOPPY)
+
+clean:
+	rm -f *.o
+	rm -f $(FLOPPY)

@@ -275,10 +275,10 @@ buffer: times 64 db 0 ; input buffer
 welcome: ; welcome message
     db "WEEVIL-16", 0Dh, 0Ah, 0h
 copyright: ; copyright message
-    db "Copyright (C) Victor Kindhart 2015", 0Dh, 0Ah, 0h
+    db "Copyright (C) Victor Kindhart 2015-2016", 0Dh, 0Ah, 0h
 howto_help: ; brief help
     db "Enter help for information about the "
-    db "system and its commands", 0Dh, 0Ah, 0Dh, 0Ah, 0h
+    db "system and its commands.", 0Dh, 0Ah, 0Dh, 0Ah, 0h
 prompt: db "> ", 0h
 
 str_hello: db "hello", 0h
